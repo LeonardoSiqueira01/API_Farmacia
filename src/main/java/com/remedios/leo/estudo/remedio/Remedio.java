@@ -26,6 +26,7 @@ public class Remedio {
 		this.lote = dados.lote();
 		this.quantidade = dados.quantidade();
 		this.validade = dados.validade();
+		this.laboratorio = dados.laboratorio();
 	}
 	
 	@Getter
