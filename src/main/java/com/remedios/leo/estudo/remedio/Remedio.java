@@ -1,5 +1,7 @@
 package com.remedios.leo.estudo.remedio;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -47,10 +49,10 @@ public class Remedio {
 	private String lote;
 	@Getter
 	@Setter
-	private String quantidade;
+	private int quantidade;
 	@Getter
 	@Setter
-	private String validade;
+	private LocalDate validade;
 	@Getter
 	@Setter
 	@Enumerated(EnumType.STRING)
