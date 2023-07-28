@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
-
+//dto post
 public record DadosCadastroRemedio(
 	@NotBlank
 	String nome,
