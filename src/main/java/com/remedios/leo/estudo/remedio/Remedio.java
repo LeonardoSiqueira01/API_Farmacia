@@ -45,7 +45,7 @@ public class Remedio {
 	@Enumerated(EnumType.STRING)
 	private Laboratorio laboratorio;
 	private boolean ativo;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -116,7 +116,12 @@ public class Remedio {
 	}
 
 	public void inativar() {
-		this.ativo=false;
+		this.ativo = false;
+	}
+
+	public void reativar() {
+		this.ativo = true;
+
 	}
 
 }

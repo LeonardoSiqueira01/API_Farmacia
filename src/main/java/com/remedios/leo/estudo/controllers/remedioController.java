@@ -58,4 +58,11 @@ public class remedioController {
 		var remedio = Repository.getReferenceById(id);
 		remedio.inativar();
 	}
+	
+	@PostMapping("/reativar/{id}")
+	@Transactional
+	public void ReativarRemedio(@PathVariable Long id ) {
+		var remedio = Repository.getReferenceById(id);
+		remedio.reativar();
+	}
 }
