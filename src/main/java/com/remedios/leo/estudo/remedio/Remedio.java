@@ -115,6 +115,14 @@ public class Remedio {
 
 	}
 
+	public boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public void inativar() {
 		this.ativo = false;
 	}
