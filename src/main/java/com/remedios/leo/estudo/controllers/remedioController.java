@@ -23,7 +23,6 @@ import com.remedios.leo.estudo.remedio.RemedioRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import lombok.experimental.var;
 
 @RestController
 @RequestMapping("/remedios")
@@ -63,6 +62,12 @@ public class remedioController {
 		Repository.deleteById(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<DadosDetalhamentoRemedio>EncontrarPorId(@PathVariable Long id){
+	var remedio = 	Repository.getReferenceById(id);
+		return ResponseEntity.ok(new DadosDetalhamentoRemedio(remedio));
+	}
 
 	@DeleteMapping("/inativar/{id}")
 	@Transactional
@@ -72,7 +77,7 @@ public class remedioController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PostMapping("/reativar/{id}")
+	@PutMapping("/reativar/{id}")
 	@Transactional
 	public ResponseEntity<Void> ReativarRemedio(@PathVariable Long id) {
 		var remedio = Repository.getReferenceById(id);
