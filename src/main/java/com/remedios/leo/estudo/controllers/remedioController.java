@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.remedios.leo.estudo.remedio.DadosAtualizacaoRemedio;
 import com.remedios.leo.estudo.remedio.DadosCadastroRemedio;
@@ -22,6 +23,7 @@ import com.remedios.leo.estudo.remedio.RemedioRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import lombok.experimental.var;
 
 @RestController
 @RequestMapping("/remedios")
@@ -32,8 +34,12 @@ public class remedioController {
 
 	@PostMapping
 	@Transactional // rollback dos dados caso, algum deles esteja invalido
-	public void cadastrar(@RequestBody @Valid DadosCadastroRemedio dados) {
-		Repository.save(new Remedio(dados));
+	public ResponseEntity<DadosDetalhamentoRemedio> cadastrar(@RequestBody @Valid DadosCadastroRemedio dados,
+			UriComponentsBuilder UriBuilder) {
+		var remedio = new Remedio(dados);
+		Repository.save(remedio);
+		var uri = UriBuilder.path("/remedios/{id}").buildAndExpand(remedio.getId()).toUri();
+		return ResponseEntity.created(uri).body(new DadosDetalhamentoRemedio(remedio));
 	}
 
 	@GetMapping
