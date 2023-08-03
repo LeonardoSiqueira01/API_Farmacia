@@ -8,12 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+@Table(name = "Usuario")
 @Entity(name = "usuarios")
-@Table(name = "usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String login;
 	private String senha;
 	
@@ -25,6 +26,7 @@ public class Usuario {
 		this.login = login;
 		this.senha = senha;
 	}
+	
 	public Long getId() {
 		return id;
 	}

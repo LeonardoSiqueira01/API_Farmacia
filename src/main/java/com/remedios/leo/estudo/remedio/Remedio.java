@@ -1,6 +1,7 @@
 package com.remedios.leo.estudo.remedio;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,15 +11,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @Table(name = "Remedio")
 @Entity(name = "remedios")
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-@AllArgsConstructor
 public class Remedio {
 	public Remedio() {
 	}
@@ -45,6 +40,21 @@ public class Remedio {
 	@Enumerated(EnumType.STRING)
 	private Laboratorio laboratorio;
 	private boolean ativo;
+
+	
+
+	public Remedio(Long id, String nome, Via via, String lote, int quantidade, LocalDate validade,
+			Laboratorio laboratorio, boolean ativo) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.via = via;
+		this.lote = lote;
+		this.quantidade = quantidade;
+		this.validade = validade;
+		this.laboratorio = laboratorio;
+		this.ativo = ativo;
+	}
 
 	public Long getId() {
 		return id;
@@ -130,6 +140,23 @@ public class Remedio {
 	public void reativar() {
 		this.ativo = true;
 
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Remedio other = (Remedio) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }
